@@ -1,4 +1,4 @@
-package com.app;
+package com.ama;
 
 import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
