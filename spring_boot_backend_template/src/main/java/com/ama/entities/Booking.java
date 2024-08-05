@@ -28,7 +28,7 @@ public class Booking extends BaseEntity{
 
 	
 	@OneToOne
-	@JoinColumn(name = "service_Name", insertable = false, updatable = false)
+	@JoinColumn(name = "service_Name", insertable = false, updatable = false, nullable = false)
 	private Service serviceName;
 	
 	@OneToOne
@@ -39,7 +39,7 @@ public class Booking extends BaseEntity{
 	@JoinColumn(name = "provider_id", insertable = false, updatable = false, nullable = false)
 	private ServiceProvider providerId;
 	@OneToOne
-	@JoinColumn(name = "service_Name", insertable = false, updatable = false)
+	@JoinColumn(name = "provider_Name", insertable = false, updatable = false, nullable = false)
 	private ServiceProvider providerName;
 	@Column(name = "booking_date")
 	private LocalDate bookingDate;
