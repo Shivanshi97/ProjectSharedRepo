@@ -27,6 +27,9 @@ public class Service extends BaseEntity{
 	@Column(name = "service_name")
 	private String serviceName;
 	@OneToOne
+	@JoinColumn(name = "provider_id", insertable = false, updatable = false, nullable = false)
+	private User providerId;
+	@OneToOne
 	@JoinColumn(name = "service_provider", insertable = false, updatable = false, nullable = false)
 	private User providerName;
 	@ManyToOne
