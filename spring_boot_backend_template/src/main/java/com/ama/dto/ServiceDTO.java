@@ -19,11 +19,11 @@ public class ServiceDTO extends BaseDTO{
 	
 	private String serviceName;
 	@JsonProperty(access = Access.WRITE_ONLY) //de ser only
-	private User providerId;
+	private Long providerId;
 	@JsonProperty(access = Access.WRITE_ONLY) //de ser only
-	private User providerName;
+	private String providerName;
 	@JsonProperty(access = Access.WRITE_ONLY) //de ser only
-	private ServiceCategory categoryId;
+	private Long categoryId;
 	
 	private String description;
 	private double price;

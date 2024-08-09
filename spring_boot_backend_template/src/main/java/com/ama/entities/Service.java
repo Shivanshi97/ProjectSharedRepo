@@ -2,6 +2,7 @@ package com.ama.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -32,7 +33,7 @@ public class Service extends BaseEntity{
 	@OneToOne
 	@JoinColumn(name = "service_provider", insertable = false, updatable = false, nullable = false)
 	private User providerName;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id", insertable = false, updatable = false, nullable = false)
 	private ServiceCategory categoryId;
 	@Column

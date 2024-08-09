@@ -63,12 +63,12 @@ public class AMAServiceImpl implements AMAService{
 		new InvalidDataException("Invalid service name !!!!"));
 	}
 
-//	@Override
-//	public ApiResponse addNewService(Service newService) {
+	@Override
+	public ApiResponse addNewService(ServiceDTO newService) {
 //		// 1. get category from category id
-//				ServiceCategory category = srvcCategoryRepository
+//				ServiceCategory category = serviceCategoryRepository
 //						.findById(newService.getCategoryId())
-//						.orElseThrow(() -> new ResourceNotFoundException("Invalid category id !!!!"));
+//						.orElseThrow();
 //				User helper=userRepository.findById(newService.getProviderId())
 //						.orElseThrow(() -> new ResourceNotFoundException("Invalid blogger id !!!!"));
 //				//category, provider : persistent
@@ -80,36 +80,39 @@ public class AMAServiceImpl implements AMAService{
 //				// blog post 1---->1 user
 //				addService.setProviderName(helper);
 //				//=> success
-//				return new ApiResponse("new blog post added ");
+				return new ApiResponse("new blog post added ");
+	}
+	
+//	@Override
+//	public ApiResponse addNewService(ServiceDTO newService) {
+//	    // 1. Get category from category ID
+//	    ServiceCategory category = serviceCategoryRepository
+//	            .findById(newService.getCategoryId())
+//	            .orElseThrow(() -> new ResourceNotFoundException("Category not found for ID: " + newService.getCategoryId()));
+//
+//	    // 2. Get provider (user) from provider ID
+//	    User provider = userRepository
+//	            .findById(newService.getProviderId())
+//	            .orElseThrow(() -> new ResourceNotFoundException("Provider not found for ID: " + newService.getProviderId()));
+//
+//	    // 3. Map ServiceDTO to Service entity
+//	    Service service = modelMapper.map(newService, Service.class);
+//
+//	    // 4. Set the category and provider for the service
+//	    service.setCategoryId(category);
+//	    service.setProviderId(provider);
+//
+//	    // 5. Save the new service entity to the database
+//	    serviceRepository.save(service);
+//
+//	    // 6. Return success response
+//	    return new ApiResponse("New service added successfully");
 //	}
+
 	
 //	public ApiResponse addNewService(ServiceDTO newService) {
-//        // 1. Get category from category ID
-//        ServiceCategory categoryId = srvcCategoryRepository
-//                .findById(newService.getCategoryId())
-//                .orElseThrow(() -> new ResourceNotFoundException("Invalid category ID !!!!"));
-//
-//        // 2. Get the service provider (User) from provider ID
-//        User providerId = userRepository.findById(newService.getProviderId())
-//                .orElseThrow(() -> new ResourceNotFoundException("Invalid provider ID !!!!"));
-//
-//        // 3. Map the ServiceDTO to a Service entity
-//        Service serviceEntity = modelMapper.map(newService, Service.class);
-//
-//        // 4. Establish the one-to-one association
-//        serviceEntity.setCategoryId(categoryId);
-//        serviceEntity.setProviderId(providerId);
-//
-//        // 5. Save the new service to the database
-//        serviceRepository.save(serviceEntity);
-//
-//        // 6. Return a success response
-//        return new ApiResponse("New service added successfully.");
-//    }
-	
-	public ApiResponse addNewService(ServiceDTO newService) {
 //        ServiceCategory category;
-//        
+//      //  ServiceCategory categoryId = newService.getCategoryId();
 //        // Option 1: Find category by ID
 //        if (newService.getCategoryId() != null) {
 //            category = serviceCategoryRepository
@@ -133,10 +136,10 @@ public class AMAServiceImpl implements AMAService{
 //
 //        // Save the new service to the database
 //        serviceRepository.save(serviceEntity);
-
-        // Return a success response
-        return new ApiResponse("New service added successfully.");
-    }
+//
+//        // Return a success response
+//        return new ApiResponse("New service added successfully.");
+//    }
 
 	@Override
 	public String updateService(Service service) {

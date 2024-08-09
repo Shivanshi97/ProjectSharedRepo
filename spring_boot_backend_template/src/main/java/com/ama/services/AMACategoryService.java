@@ -12,7 +12,7 @@ public interface AMACategoryService {
 	//for admin
 	ServiceCategory addCategory(ServiceCategory newCategory);
 	
-	String updateCategory(String categoryName);
+	String updateCategory(ServiceCategory categoryName);
 	
 	//for delete
 	String deleteCategory(String categoryName);
