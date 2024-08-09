@@ -16,5 +16,5 @@ public interface UserService {
 	
 	String delete(Long id);
 	
-	User viewUser();
+	User viewUser(Long userId);
 }
