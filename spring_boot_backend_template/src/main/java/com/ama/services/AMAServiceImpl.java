@@ -10,13 +10,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ama.custom_exceptions.InvalidDataException;
+import com.ama.custom_exceptions.ResourceNotFoundException;
 import com.ama.dto.ApiResponse;
 import com.ama.dto.ServiceDTO;
 import com.ama.entities.Service;
 import com.ama.entities.ServiceCategory;
-import com.ama.entities.User;
+import com.ama.entities.ServiceProvider;
 import com.ama.repository.AMAServiceRepository;
 import com.ama.repository.ServiceCategoryRepository;
+import com.ama.repository.ServiceProviderRepository;
 import com.ama.repository.UserRepository;
 
 @org.springframework.stereotype.Service
@@ -25,25 +27,25 @@ import com.ama.repository.UserRepository;
 public class AMAServiceImpl implements AMAService{
 	
 	//DI AMAServiceRepository
-//	@Autowired
-//	private AMAServiceRepository serviceRepository;
-//	@Autowired
-//	private ServiceCategoryRepository srvcCategoryRepository;
-//	@Autowired
-//	private UserRepository userRepository;
-//	@Autowired
-//	private ModelMapper modelMapper;
-	 @Autowired
-	    private AMAServiceRepository serviceRepository;
-
-	    @Autowired
-	    private ServiceCategoryRepository serviceCategoryRepository;
-
-	    @Autowired
-	    private UserRepository userRepository;
-
-	    @Autowired
-	    private ModelMapper modelMapper;
+	@Autowired
+	private AMAServiceRepository serviceRepository;
+	@Autowired
+	private ServiceCategoryRepository serviceCategoryRepository;
+	@Autowired
+	private ServiceProviderRepository providerRepository;
+	@Autowired
+	private ModelMapper modelMapper;
+//		@Autowired
+//	    private AMAServiceRepository serviceRepository;
+//
+//	    @Autowired
+//	    private ServiceCategoryRepository serviceCategoryRepository;
+//
+//	    @Autowired
+//	    private UserRepository userRepository;
+//
+//	    @Autowired
+//	    private ModelMapper modelMapper;
 	
 
 	@Override
@@ -65,21 +67,31 @@ public class AMAServiceImpl implements AMAService{
 
 	@Override
 	public ApiResponse addNewService(ServiceDTO newService) {
-//		// 1. get category from category id
-//				ServiceCategory category = serviceCategoryRepository
-//						.findById(newService.getCategoryId())
-//						.orElseThrow();
-//				User helper=userRepository.findById(newService.getProviderId())
-//						.orElseThrow(() -> new ResourceNotFoundException("Invalid blogger id !!!!"));
-//				//category, provider : persistent
-//				//map blog post dto --> entity
-//				Service addService = modelMapper.map(newService, Service.class);
-//				//establish E-R
-//				//service  1--->1 catgeory
-////				category.addService(newService);
-//				// blog post 1---->1 user
-//				addService.setProviderName(helper);
-//				//=> success
+		// 1. get category from category id
+				ServiceCategory categoryId = serviceCategoryRepository
+						.findById(newService.getCategoryId())
+						.orElseThrow(() -> new ResourceNotFoundException("Invalid category id !!!!"));
+				ServiceCategory categoryName = serviceCategoryRepository
+						.findByCategoryName(newService.getCategoryName())
+						.orElseThrow(() -> new ResourceNotFoundException("Invalid category name !!!!"));
+				ServiceProvider providerId = providerRepository
+						.findById(newService.getProviderId())
+						.orElseThrow(() -> new ResourceNotFoundException("Invalid provider id !!!!"));
+				ServiceProvider providerName = providerRepository
+						.searchByName(newService.getProviderName())
+						.orElseThrow(() -> new ResourceNotFoundException("Invalid provider name !!!!"));
+				//category, provider : persistent
+				//map service dto --> entity
+				Service addService = modelMapper.map(newService, Service.class);
+				//establish E-R
+				//service  *--->1 category
+		//		category.addService(newService);
+				addService.setCategoryId(categoryId);
+				addService.setCategoryName(categoryName);
+				// service 1---->1 provider
+				addService.setProviderId(providerId);
+				addService.setProviderName(providerName);
+				//=> success
 				return new ApiResponse("new blog post added ");
 	}
 	

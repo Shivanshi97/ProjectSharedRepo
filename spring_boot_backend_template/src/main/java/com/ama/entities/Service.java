@@ -29,13 +29,16 @@ public class Service extends BaseEntity{
 	private String serviceName;
 	@OneToOne
 	@JoinColumn(name = "provider_id", insertable = false, updatable = false, nullable = false)
-	private User providerId;
+	private ServiceProvider providerId;
 	@OneToOne
 	@JoinColumn(name = "service_provider", insertable = false, updatable = false, nullable = false)
-	private User providerName;
+	private ServiceProvider providerName;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id", insertable = false, updatable = false, nullable = false)
 	private ServiceCategory categoryId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_name", insertable = false, updatable = false, nullable = false)
+	private ServiceCategory categoryName;
 	@Column
 	private String description;
 	@Column

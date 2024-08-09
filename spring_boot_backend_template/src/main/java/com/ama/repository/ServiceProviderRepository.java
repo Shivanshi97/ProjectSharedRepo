@@ -10,5 +10,6 @@ import com.ama.entities.ServiceProvider;
 @Repository
 public interface ServiceProviderRepository extends JpaRepository<ServiceProvider, Long> {
 
-	Optional<ServiceProvider> findByProviderName(String categoryName);
+
+	Optional<ServiceProvider> searchByName(String serviceName);
 }

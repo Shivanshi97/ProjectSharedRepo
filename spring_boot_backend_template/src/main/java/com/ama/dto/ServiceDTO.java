@@ -1,7 +1,5 @@
 package com.ama.dto;
 
-import com.ama.entities.ServiceCategory;
-import com.ama.entities.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -24,6 +22,8 @@ public class ServiceDTO extends BaseDTO{
 	private String providerName;
 	@JsonProperty(access = Access.WRITE_ONLY) //de ser only
 	private Long categoryId;
+	@JsonProperty(access = Access.WRITE_ONLY) //de ser only
+	private String categoryName;
 	
 	private String description;
 	private double price;
