@@ -1,6 +1,7 @@
 package com.ama.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -36,9 +37,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String login(String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public User login(String email, String password) {
+		User user= userRepository.
+				findByEmailAndPassword(email, password).orElseThrow(() ->
+		new InvalidDataException("Invalid Email or password !!!!"));
+		//return "User Logged in successfully";
+		return user; 
 	}
 
 	@Override

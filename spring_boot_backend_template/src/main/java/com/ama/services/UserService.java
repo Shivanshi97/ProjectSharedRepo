@@ -10,7 +10,7 @@ public interface UserService {
 	
 	User registration(User newUser);		//use validateUser()
 	
-	String login(String email, String password);		//use authenticateUser()
+	User login(String email, String password);		//use authenticateUser()
 	
 	String edit(Long id);
 	

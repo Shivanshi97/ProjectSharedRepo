@@ -2,6 +2,7 @@ package com.ama.services;
 
 import java.util.List;
 
+import com.ama.dto.ApiResponse;
 import com.ama.entities.Payment;
 
 public interface PaymentService {
@@ -10,7 +11,7 @@ public interface PaymentService {
 	List<Payment> listAllPayments();
 	
 	//for customer
-	Payment makePayment(Payment payment);
+	ApiResponse makePayment(Payment payment);
 	
-	Payment viewPayment();
+	Payment viewPayment(Long paymentId);
 }

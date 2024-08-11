@@ -9,7 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ama.custom_exceptions.InvalidDataException;
 import com.ama.entities.ServiceCategory;
+import com.ama.entities.User;
 import com.ama.repository.ServiceCategoryRepository;
 
 @Service
@@ -43,7 +45,9 @@ public class AMACategoryServiceImpl implements AMACategoryService{
 
 	@Override
 	public String deleteCategory(String categoryName) {
-		categoryRepository.delete(categoryRepository.findByCategoryName(categoryName));
+		ServiceCategory delCategory = categoryRepository.findByCategoryName(categoryName)
+				.orElseThrow(()-> new InvalidDataException("Invalid Id : Data not deleted"));
+		categoryRepository.delete(delCategory);
 		return "Category Deleted Successfully";
 	}
 

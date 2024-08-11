@@ -10,8 +10,15 @@ import com.ama.entities.Service;
 @Repository
 public interface AMAServiceRepository extends JpaRepository<Service, Long> {
 
-	//add a derived finder method for finding service
-	Optional<Service> searchByName(String serviceName);
+     //  void findByName(String serviceName);
 
+//	Optional<Service> findByName(String serviceName);
+
+	Optional<Service> findByServiceName(String serviceName);
+
+	//add a derived finder method for finding service
+
+	
+	
 
 }
