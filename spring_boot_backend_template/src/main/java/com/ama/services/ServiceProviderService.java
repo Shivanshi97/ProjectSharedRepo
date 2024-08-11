@@ -2,15 +2,16 @@ package com.ama.services;
 
 import java.util.List;
 
+import com.ama.dto.ApiResponse;
+import com.ama.dto.ServiceProviderDTO;
 import com.ama.entities.ServiceProvider;
-import com.ama.entities.User;
 
 public interface ServiceProviderService {
 	//for admin
-	List<User> listAllServiceProviders();
+	List<ServiceProvider> listAllServiceProviders();
 	
 	//for serviceProvider
-	ServiceProvider addNewProvider(ServiceProvider newServiceProvider);
+	ApiResponse addNewProvider(ServiceProviderDTO newServiceProvider);
 	
 	String updateProvider(ServiceProvider serviceProvider);
 	

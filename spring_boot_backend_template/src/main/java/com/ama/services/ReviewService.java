@@ -2,6 +2,7 @@ package com.ama.services;
 
 import java.util.List;
 
+import com.ama.dto.ApiResponse;
 import com.ama.entities.Review;
 
 public interface ReviewService {
@@ -13,5 +14,5 @@ public interface ReviewService {
 	String deleteReviews(Long id);
 	
 	//for admin and customer
-	Review addReview(Review newReview);
+	ApiResponse addReview(Review newReview);
 }

@@ -35,17 +35,6 @@ public class AMAServiceImpl implements AMAService{
 	private ServiceProviderRepository providerRepository;
 	@Autowired
 	private ModelMapper modelMapper;
-//		@Autowired
-//	    private AMAServiceRepository serviceRepository;
-//
-//	    @Autowired
-//	    private ServiceCategoryRepository serviceCategoryRepository;
-//
-//	    @Autowired
-//	    private UserRepository userRepository;
-//
-//	    @Autowired
-//	    private ModelMapper modelMapper;
 	
 
 	@Override

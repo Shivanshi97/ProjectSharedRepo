@@ -29,7 +29,7 @@ public class Review extends BaseEntity{
 	private Booking bookingId;
 	@ManyToOne
 	@JoinColumn(name = "user_id", insertable = false, updatable = false, nullable = false)
-	private User userId;
+	private User customerId;
 	@Column
 	private int rating;
 	@Column

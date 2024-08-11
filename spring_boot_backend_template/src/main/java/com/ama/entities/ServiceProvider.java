@@ -25,13 +25,16 @@ import lombok.ToString;
 public class ServiceProvider extends BaseEntity{
 
 	@OneToOne
+	@JoinColumn(name = "provider_id", insertable = false, updatable = false, nullable = false)
+	private User providerId;
+	@OneToOne
 	@JoinColumn(name = "provider_Name", insertable = false, updatable = false, nullable = false)
 	private User providerName;
 	@Column
 	private String bio;
 	@Column
 	private int rating;
-	@Column(name = "srvc_location")
+	@Column(name = "service_location")
 	private String serviceLocation;
 	@Enumerated(EnumType.STRING)
 	@Column
