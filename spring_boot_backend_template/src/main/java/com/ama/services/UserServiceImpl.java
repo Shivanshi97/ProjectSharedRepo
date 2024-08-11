@@ -1,7 +1,6 @@
 package com.ama.services;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ama.custom_exceptions.InvalidDataException;
+import com.ama.dto.UserDTO;
 import com.ama.entities.User;
 import com.ama.repository.UserRepository;
 
@@ -23,11 +23,11 @@ public class UserServiceImpl implements UserService{
 	private ModelMapper modelMapper;
 	
 	@Override
-	public List<User> getAllUsers() {
+	public List<UserDTO> getAllUsers() {
 		return userRepository.findAll() //List<Uset>
 				.stream() //Stream<Category>
 				.map(user -> 
-				modelMapper.map(user,User.class)) //Stream<dto>
+				modelMapper.map(user,UserDTO.class)) //Stream<dto>
 				.collect(Collectors.toList());
 	}
 

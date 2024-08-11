@@ -1,15 +1,22 @@
 package com.ama.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ama.dto.ApiResponse;
+import com.ama.dto.UserDTO;
 import com.ama.entities.Role;
 import com.ama.entities.User;
 import com.ama.services.UserService;
@@ -24,7 +31,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/user/register")
+	@PostMapping("/register")
 	public String processRegistration(@RequestBody User newUser, Model map, HttpSession session) {
 		
 		System.out.println("in process login form " + newUser);
@@ -76,5 +83,35 @@ public class UserController {
 			map.addAttribute("message", e.getMessage());
 			return "/users/login";// AVN : /WEB-INF/views/users/login.jsp
 		}
+	}
+	
+	@GetMapping
+	public List<UserDTO> listAllUsers(){
+		System.out.println("in list of users");
+		return userService.getAllUsers();
+	}
+	
+	@GetMapping("/{userId}")
+	public User vieUser(@PathVariable Long userId)
+	{
+		System.out.println("in get category by "+userId);
+		return userService.viewUser(userId);
+	}
+	
+	@PutMapping("/{userId}")
+	public String updateUserDetails(@RequestBody Long userId)
+	{
+		System.out.println("in update "+userId);
+		return userService.edit(userId);
+	}
+	
+	@DeleteMapping("/{userId}")
+	//@PathVariable - method arg level annotation , to bind 
+	//incoming path var to the method arg
+	public ApiResponse deleteUserDetails(@PathVariable Long userId)
+	{
+		System.out.println("in del user "+userId);
+		return new ApiResponse
+				(userService.delete(userId));
 	}
 }

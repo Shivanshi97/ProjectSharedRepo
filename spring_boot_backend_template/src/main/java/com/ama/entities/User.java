@@ -25,7 +25,7 @@ public class User extends BaseEntity{
 	private String email;
 	@Column(nullable = false)
 	private String password;
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition = "VARCHAR(255) DEFAULT 'unknown'")
 	private String address;
 	@Column(name = "phone_no", unique = true, nullable = false)
 	private int phoneNo;
